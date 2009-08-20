@@ -1,6 +1,8 @@
-class Support
-  def self.dirty_currency_string_to_f(string)
-    string.to_s.strip.gsub(/(\302|\240)/, "").gsub('.', '').gsub(',', '.').delete('SEK').to_f
+module Nordea
+  class Support
+    def self.dirty_currency_string_to_f(string)
+      string.to_s.strip.gsub(/(\302|\240)/, "").gsub('.', '').gsub(',', '.').delete('SEK').to_f
+    end
   end
 end
 

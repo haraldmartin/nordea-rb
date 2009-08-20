@@ -33,7 +33,6 @@ module Nordea
     TRANSFER_TO_OTHER_ACCOUNT = "EK00"
   end
   
-  # TODO clean up
   def Nordea.new(pnr_or_hash, pin_or_options = {}, &block)
     pnr, pin = extract_login_details(pnr_or_hash, pin_or_options)
     raise ArgumentError unless pnr.length == 10 && pin.length == 4
@@ -42,6 +41,7 @@ module Nordea
   
   private
   
+    # TODO clean up
     def self.extract_login_details(pnr_or_hash, pin_or_options)
       if pnr_or_hash.is_a?(Hash)
         pnr_or_hash.symbolize_keys!
