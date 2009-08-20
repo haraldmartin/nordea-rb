@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+	
+
+
+
+
+<wml>
+
+<card title="Huvudmeny" newcontext="true">
+	
+	<p>
+		<anchor title="Konto&#246;versikt">Konto&#246;versikt
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAP11TW"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor><br/>
+		
+		<anchor title="&#214;verf&#246;ringar">&#214;verf&#246;ringar
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAP12TW"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor><br/>
+		
+		<anchor title="Betalningar">Betalningar
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="FB00TW"/>    
+				<postfield name="visa_meny" value="1"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor><br/>
+		
+		<anchor title="Ladda">Ladda kontantkort
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="EK00"/>
+				<postfield name="target" value="RP00S"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor><br/>
+		
+		<anchor title="Kort">Kort
+				<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+					<postfield name="OBJECT" value="CC00T"/>
+					<postfield name="sid" value="123456789"/>
+				</go>
+		</anchor><br/>
+		
+		<anchor title="Fonder">Fonder
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="PP00"/>
+				<postfield name="PAGE" value="fonder/pp00_start_fund"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor><br/>
+		
+    
+		
+	
+		
+		<a href="#Villkor">Viktig information</a><br/>
+		
+		
+		
+		<anchor title="Logga ut">Logga ut
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="LL99"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor><br/>		
+		
+	</p>
+
+	<do type="options" label="Solo logga ut">
+		<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+			<postfield name="OBJECT" value="LL99"/>
+			<postfield name="sid" value="123456789"/>
+		</go>
+	</do>
+	
+</card>
+
+<card id="Villkor" title="Viktig info.">
+	<do type="prev" label="Tillbaka">
+		<prev/>
+	</do>
+	
+	<do type="options" label="Solo meny">
+		<prev/>
+	</do>
+	
+	<p>
+F&#246;r alla uppdrag som l&#228;mnas och alla avtal som ing&#229;s mellan banken och kunden via WAP g&#228;ller av banken vid var tid 
+till&#228;mpade best&#228;mmelser och allm&#228;nna villkor f&#246;r respektive tj&#228;nst. 
+Best&#228;mmelserna och de allm&#228;nna villkoren finns att l&#228;sa i Internetbanken, men kan &#228;ven f&#229;s p&#229; n&#228;rmaste bankkontor.<br/>
+		<br/>
+		
+		<anchor title="Solo meny">Huvudmeny<prev/></anchor><br/>
+	</p>
+	
+</card>
+
+</wml>
+
+

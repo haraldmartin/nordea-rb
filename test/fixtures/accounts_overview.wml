@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+
+
+
+
+<wml>
+<template>
+	<do type="options" label="Solo meny">
+		<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+			<postfield name="OBJECT" value="WAPL10" />
+			<postfield name="sid" value="123456789" />
+		</go>
+	</do>
+	
+	<do type="prev" label="Tillbaka">
+		<prev />
+	</do>
+</template>
+
+<card title="&#214;versikt">
+  
+	<p>
+		
+			<anchor title="Konton">Konton
+				<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+					<postfield name="OBJECT" value="KF00TW" />
+					<postfield name="sid" value="123456789" />
+					<postfield name="account_type_name" value="konton" />
+				</go>
+			</anchor><br />
+		
+		
+		
+			<anchor title="Fonder">Fonder
+				<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+					<postfield name="OBJECT" value="KF00TW" />
+					<postfield name="sid" value="123456789" />
+					<postfield name="account_type_name" value="fonder" />
+				</go>
+			</anchor><br />
+		
+		
+		
+		
+		
+			<anchor title="L&#229;n">L&#229;n
+				<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+					<postfield name="OBJECT" value="KF00TW" />
+					<postfield name="sid" value="123456789" />
+					<postfield name="account_type_name" value="lan" />
+				</go>
+			</anchor><br />
+			
+		
+		
+			<anchor title="Kort">Kort
+				<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+					<postfield name="OBJECT" value="KF00TW" />
+					<postfield name="sid" value="123456789" />
+					<postfield name="account_type_name" value="kort" />
+				</go>
+			</anchor><br />
+		
+		
+		<br />
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+				<postfield name="OBJECT" value="WAPL10" />
+				<postfield name="sid" value="123456789" />
+			</go>
+		</anchor>
+		<br />
+    
+ 		<anchor title="Avancerade tj&#228;nsten">Avancerade tj&#228;nsten
+			<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+				<postfield name="OBJECT" value="EK00" />
+				<postfield name="target" value="WAP11" />
+				<postfield name="sid" value="123456789" />
+			</go>
+		</anchor><br />
+
+	</p>
+</card>
+  
+</wml>

@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+	
+
+
+
+
+<wml>
+
+<template>
+	<do type="options" label="Solo meny">
+		<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+			<postfield name="OBJECT" value="WAPL10"/>
+			<postfield name="sid" value="123456789"/>
+		</go>
+	</do>
+	
+	<do type="prev" label="Tillbaka">
+		<prev/>
+	</do>
+</template>
+
+<card title="&#214;versikt">
+
+	
+		
+	
+	
+			
+
+	
+	
+	
+		
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	<p>
+		
+			
+			
+				<anchor title="Kontoutdrag">Sparkonto
+					<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+						<postfield name="OBJECT" value="KF11TW"/>
+						<postfield name="sid" value="123456789"/>
+					  <postfield name="account_name" value="Sparkonto"/>
+						<postfield name="account_index" value="1"/>
+						<postfield name="account_type" value="001"/>
+						<postfield name="account_currency_code" value="SEK"/>
+						<postfield name="top_page" value="1"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+				&#160;&#160;2.000,00&#160;SEK<br/>
+			
+				<anchor title="Kontoutdrag">Huvudkonto
+					<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+						<postfield name="OBJECT" value="KF11TW"/>
+						<postfield name="sid" value="123456789"/>
+					  <postfield name="account_name" value="Huvudkonto"/>
+						<postfield name="account_index" value="2"/>
+						<postfield name="account_type" value="001"/>
+						<postfield name="account_currency_code" value="SEK"/>
+						<postfield name="top_page" value="1"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+				&#160;&#160;5.643,50&#160;SEK<br/>
+			
+				<anchor title="Kontoutdrag">Betalkonto
+					<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+						<postfield name="OBJECT" value="KF11TW"/>
+						<postfield name="sid" value="123456789"/>
+					  <postfield name="account_name" value="Betalkonto"/>
+						<postfield name="account_index" value="3"/>
+						<postfield name="account_type" value="001"/>
+						<postfield name="account_currency_code" value="SEK"/>
+						<postfield name="top_page" value="1"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+				&#160;&#160;179,05&#160;SEK<br/>
+			
+		
+		
+		
+		
+		
+		
+							
+		
+				
+				
+						
+		
+		
+		
+		
+		<br/>
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor>
+	</p>
+	
+</card>
+
+
+<card id="info" title="Kontoinform.">
+	<p>
+		$name<br/>
+		
+		<br/>
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor>
+	</p>
+</card>
+
+</wml>
+
+

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+	
+
+
+
+
+<wml> 
+<card title="Loggar in"> 
+	<onevent type="onenterforward"> 
+		<refresh> 
+			<setvar name="sid" value="123456789" /> 
+		</refresh> 
+	</onevent>	 
+
+
+
+
+	<onevent type="ontimer"> 
+		<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+"> 
+			<postfield name="OBJECT" value="KK10" /> 
+			<postfield name="bank" value="mobile_light" /> 
+			<postfield name="sid" value="123456789" /> 
+			<postfield name="no_prev" value="1" /> 
+			<postfield name="contract" value="0000000:HI:FOO+BAR" /> 
+		</go> 
+	</onevent> 
+	<timer value="1" /> 
+	 
+	<p align="center"> 
+		<br /> 
+		Var v&#228;nlig v&#228;nta...<br /> 
+	</p>		 
+
+
+
+</card>		 
+</wml> 

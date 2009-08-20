@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+
+<wml>
+
+<template>
+	<do type="options" label="Solo meny">
+		<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+			<postfield name="OBJECT" value="WAPL10"/>
+			<postfield name="sid" value="123456789"/>
+		</go>
+	</do>
+	
+	<do type="prev" label="Tillbaka">
+		<prev/>
+	</do>
+</template>
+
+<card title="Kontoinform.">
+
+	<onevent type="onenterforward">
+		<refresh>
+			<setvar name="sid" value="123456789"/>
+		</refresh>
+	</onevent>
+	
+	<p>
+		<a href="#info">Kontoinformation</a>
+		
+
+	<br/>
+
+		Kontoh&#228;ndelser:<br/>
+    
+					
+				<anchor>090816&#160;&#160;-52,70
+					<go href="#trans">
+						<setvar name="date" value="2009-08-16"/>
+						<setvar name="amount" value="-52,70"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+				<anchor>090815&#160;&#160;-300,00
+					<go href="#trans">
+						<setvar name="date" value="2009-08-15"/>
+						<setvar name="amount" value="-300,00"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+				<anchor>090815&#160;&#160;-23,70
+					<go href="#trans">
+						<setvar name="date" value="2009-08-15"/>
+						<setvar name="amount" value="-23,70"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+				<anchor>090813&#160;&#160;-45,70
+					<go href="#trans">
+						<setvar name="date" value="2009-08-13"/>
+						<setvar name="amount" value="-45,70"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+				<anchor>090813&#160;&#160;-23,32
+					<go href="#trans">
+						<setvar name="date" value="2009-08-13"/>
+						<setvar name="amount" value="-23,32"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+			
+			
+			
+			
+				<anchor title="N&#228;sta sida">N&#228;sta sida 2(7)
+					<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+						<postfield name="OBJECT" value="KF11TW"/>
+						<postfield name="sid" value="123456789"/>
+						<postfield name="current_page" value="2"/>
+						<postfield name="account_type" value="001"/>
+						<postfield name="account_currency_code" value="SEK"/>
+						<postfield name="start_transaction" value="21"/>
+						<postfield name="account_name" value="Betalkonto"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+		
+		
+		
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor>
+	</p>		 
+</card>
+
+
+
+<card id="trans" title="Kontoh&#228;nd.">
+	<p>
+		$date<br/>
+		$amount<br/>
+		$text<br/>
+		<br/>
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor>
+	</p>
+</card>
+
+
+<card id="info" title="Kontoinform.">
+	<p>
+		Betalkonto<br/>
+		Valuta: SEK<br/>
+		Saldo: 179,05<br/>
+		Disponibelt belopp: 179,05<br/>
+		<br/>
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor>
+	</p>
+</card>
+
+</wml>
+
+

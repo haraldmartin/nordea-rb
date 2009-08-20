@@ -1,0 +1,335 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+
+<wml>
+
+<template>
+	<do type="options" label="Solo meny">
+		<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+			<postfield name="OBJECT" value="WAPL10"/>
+			<postfield name="sid" value="123456789"/>
+		</go>
+	</do>
+	
+	<do type="prev" label="Tillbaka">
+		<prev/>
+	</do>
+</template>
+
+<card title="Kontoinform.">
+
+	<onevent type="onenterforward">
+		<refresh>
+			<setvar name="sid" value="123456789"/>
+		</refresh>
+	</onevent>
+	
+	<p>
+		<a href="#info">Kontoinformation</a>
+		
+
+	<br/>
+
+		Kontoh&#228;ndelser:<br/>
+    
+					
+				<anchor>090816&#160;&#160;-52,70
+					<go href="#trans">
+						<setvar name="date" value="2009-08-16"/>
+						<setvar name="amount" value="-52,70"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+				<anchor>090815&#160;&#160;-300,00
+					<go href="#trans">
+						<setvar name="date" value="2009-08-15"/>
+						<setvar name="amount" value="-300,00"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+				<anchor>090815&#160;&#160;-23,70
+					<go href="#trans">
+						<setvar name="date" value="2009-08-15"/>
+						<setvar name="amount" value="-23,70"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+				<anchor>090813&#160;&#160;-45,70
+					<go href="#trans">
+						<setvar name="date" value="2009-08-13"/>
+						<setvar name="amount" value="-45,70"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+				<anchor>090813&#160;&#160;-23,32
+					<go href="#trans">
+						<setvar name="date" value="2009-08-13"/>
+						<setvar name="amount" value="-23,32"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+				<anchor>090813&#160;&#160;-196,00
+					<go href="#trans">
+						<setvar name="date" value="2009-08-13"/>
+						<setvar name="amount" value="-196,00"/>
+						<setvar name="text" value="Res. k&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+			
+				<anchor>090812&#160;&#160;-400,00
+					<go href="#trans">
+						<setvar name="date" value="2009-08-12"/>
+						<setvar name="amount" value="-400,00"/>
+						<setvar name="text" value="Kortk&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+				<anchor>090811&#160;&#160;-52,62
+					<go href="#trans">
+						<setvar name="date" value="2009-08-11"/>
+						<setvar name="amount" value="-52,62"/>
+						<setvar name="text" value="Kortk&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+				<anchor>090811&#160;&#160;-185,16
+					<go href="#trans">
+						<setvar name="date" value="2009-08-11"/>
+						<setvar name="amount" value="-185,16"/>
+						<setvar name="text" value="Kortk&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+				<anchor>090805&#160;&#160;-287,03
+					<go href="#trans">
+						<setvar name="date" value="2009-08-05"/>
+						<setvar name="amount" value="-287,03"/>
+						<setvar name="text" value="Kortk&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+				<anchor>090805&#160;&#160;-252,74
+					<go href="#trans">
+						<setvar name="date" value="2009-08-05"/>
+						<setvar name="amount" value="-252,74"/>
+						<setvar name="text" value="Kortk&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+				<anchor>090804&#160;&#160;-300,00
+					<go href="#trans">
+						<setvar name="date" value="2009-08-04"/>
+						<setvar name="amount" value="-300,00"/>
+						<setvar name="text" value="Bankomat"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+				<anchor>090804&#160;&#160;-103,00
+					<go href="#trans">
+						<setvar name="date" value="2009-08-04"/>
+						<setvar name="amount" value="-103,00"/>
+						<setvar name="text" value="Kortk&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+				<anchor>090804&#160;&#160;2.500,00
+					<go href="#trans">
+						<setvar name="date" value="2009-08-04"/>
+						<setvar name="amount" value="2.500,00"/>
+						<setvar name="text" value="&#214;verf&#246;ring"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+				<anchor>090801&#160;&#160;-236,35
+					<go href="#trans">
+						<setvar name="date" value="2009-08-01"/>
+						<setvar name="amount" value="-236,35"/>
+						<setvar name="text" value="Kortk&#246;p"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+	
+
+			
+			
+			
+			
+			
+				<anchor title="N&#228;sta sida">N&#228;sta sida 2(7)
+					<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+						<postfield name="OBJECT" value="KF11TW"/>
+						<postfield name="sid" value="123456789"/>
+						<postfield name="current_page" value="2"/>
+						<postfield name="account_type" value="001"/>
+						<postfield name="account_currency_code" value="SEK"/>
+						<postfield name="start_transaction" value="21"/>
+						<postfield name="account_name" value="Betalkonto"/>
+					</go>
+				</anchor>
+				
+
+	<br/>
+
+
+
+
+			
+		
+		
+		
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor>
+	</p>		 
+</card>
+
+
+
+<card id="trans" title="Kontoh&#228;nd.">
+	<p>
+		$date<br/>
+		$amount<br/>
+		$text<br/>
+		<br/>
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor>
+	</p>
+</card>
+
+
+<card id="info" title="Kontoinform.">
+	<p>
+		Betalkonto<br/>
+		Valuta: SEK<br/>
+		Saldo: 179,05<br/>
+		Disponibelt belopp: 179,05<br/>
+		<br/>
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	get
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="123456789"/>
+			</go>
+		</anchor>
+	</p>
+</card>
+
+</wml>
+
+

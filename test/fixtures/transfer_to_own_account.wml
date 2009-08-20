@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+	
+
+
+
+
+<wml>
+
+<template>
+	<do type="options" label="Solo meny">
+		<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+			<postfield name="OBJECT" value="WAPL10" />
+			<postfield name="sid" value="123456789" />
+		</go>
+	</do>
+	
+</template>
+
+
+	<card title="Till eg. 1(4)" newcontext="true">
+
+<onevent type="onenterforward">
+	<refresh>
+		<setvar name="sid" value="123456789" />
+		
+			<setvar name="amount" value="" />
+		
+	</refresh>
+</onevent>
+
+<p>
+		
+	
+	
+		
+		
+		
+		
+    
+		
+		
+
+
+
+
+	
+
+
+
+
+	Fr&#229;n konto<br /><select name="from_account_info" title="Fr&#229;n konto" ivalue="1">
+
+
+			
+  		   <option value="1:SEK:Sparkonto ">Sparkonto SEK</option>
+			
+  		   <option value="2:SEK:Huvudkonto ">Huvudkonto SEK</option>
+			
+  		   <option value="3:SEK:Betalkonto ">Betalkonto SEK</option>
+			
+		
+
+
+	</select><br />
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+	Belopp<br /><input name="amount" size="10" format="*n" title="Belopp" emptyok="true" value="" maxlength="10" /><br />
+
+
+			
+		
+		
+		
+		
+			
+		
+		
+
+
+
+
+
+
+
+	Valuta<br /><select name="currency_code" title="Valuta" ivalue="1">
+
+
+			<option value="SEK">SEK</option>
+			<option value="EUR">EUR</option>
+		
+
+
+	</select><br />
+
+
+			
+		<anchor title="Forts&#228;tt">Forts&#228;tt
+			<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+				<postfield name="OBJECT" value="OF00TW" />
+				<postfield name="sid" value="$sid" />
+				<postfield name="to_account_ind" value="" />
+				<postfield name="from_account_info" value="$from_account_info" />
+				<postfield name="amount" value="$amount" />
+				<postfield name="currency_code" value="$currency_code" />
+				<postfield name="account_org" value="" />
+				<postfield name="account_curr_org" value="" />
+				<postfield name="page" value="2" />
+			</go>
+		</anchor><br />
+	
+		
+	
+		
+	<anchor title="Avbryt">Avbryt
+		<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+			<postfield name="OBJECT" value="WAP12TW" />
+			<postfield name="sid" value="$sid" />
+		</go>
+	</anchor>
+</p>
+</card>
+
+</wml>

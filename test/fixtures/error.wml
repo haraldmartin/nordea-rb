@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+	
+
+
+
+
+<wml>
+
+<card title="Fel">
+	<do type="options" label="Solo logga in">
+		<go href="https://gfs.nb.se/bin2/gfskod?OBJECT=WAP46&amp;sid=0" />
+	</do>
+	
+	<do type="prev" label="Tillbaka">
+		<prev />
+	</do>
+	
+	<p>
+		Pinkoden ni angivit &#228;r sp&#228;rrad<br />
+		<br />
+		
+	
+		
+		
+	</p>
+</card>
+
+</wml>

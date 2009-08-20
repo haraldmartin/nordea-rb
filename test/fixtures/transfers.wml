@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+	
+
+
+
+
+<wml>
+
+<template>
+	<do type="options" label="Solo meny">
+		<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+			<postfield name="OBJECT" value="WAPL10" />
+			<postfield name="sid" value="123456789" />
+		</go>
+	</do>
+	
+	<do type="prev" label="Tillbaka">
+		<prev />
+	</do>
+</template>
+
+<card title="&#214;verf&#246;ringar">
+
+	<onevent type="onenterforward">
+		<refresh>
+			<setvar name="sid" value="123456789" />
+		</refresh>
+	</onevent>
+	
+	<p>
+		<anchor title="Till eget">Till eget konto
+			<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+				<postfield name="OBJECT" value="OF00TW" />
+				<postfield name="sid" value="123456789" />
+			</go>
+		</anchor><br />
+	
+		<anchor title="Till annans">Till annans konto
+			<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+				<postfield name="OBJECT" value="EK00" />
+				<postfield name="target" value="OF01S" />
+				<postfield name="sid" value="123456789" />
+				<postfield name="till_konto" value="1" />
+			</go>
+		</anchor><br />
+	
+		<br />
+    
+		<anchor title="Solo meny">Huvudmeny
+			<go href="https://gfs.nb.se/bin2/gfskod" method="
+	post
+
+">
+				<postfield name="OBJECT" value="WAPL10" />
+				<postfield name="sid" value="123456789" />
+			</go>
+		</anchor>
+	</p>
+</card>
+
+</wml>

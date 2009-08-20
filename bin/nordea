@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+require File.join(File.dirname(__FILE__), *%w".. lib nordea")
+require 'optparse'
+
+options, accounts, pnr, command = {}, []
+
+opts = OptionParser.new do |opts|
+  opts.banner = "Usage: nordea [options]"
+  
+  def opts.show_usage
+    puts self
+    exit  
+  end
+  
+  opts.on('-p', '--pnr=PERSONNUMMER', "Login using the PERSONNUMMER") do |p|
+    pnr = p
+  end
+  
+  opts.on('-i', '--pin=PIN', "Login using the PIN code") do |pin|
+    options = pin
+  end
+  
+  opts.on('-k', '--keychain', "Get account details from the default keychain. See README how to set this up") do
+    pnr = :keychain
+  end
+  
+  opts.on('-f', '--keychain-file=FILE', "Use the keychain FILE") do |file|
+    options[:keychain_file] = file
+  end
+
+  opts.on('-l', '--keychain-label=LABEL', "Look for a keychain item named LABEL") do |label|
+    options[:label] = label
+  end
+
+  opts.on('-b', '--balance', "Print the account's balance") do
+    # right now balance is the only supported command
+  end
+  
+  opts.on_tail("-h", "--help", "Shows this help message") { opts.show_usage }
+  opts.on_tail("-v", "--version", "Shows version") do
+    puts Nordea::Version::STRING
+    exit
+  end
+
+  begin
+    opts.order(ARGV) { |a| accounts << a }
+  rescue OptionParser::ParseError => e
+    opts.warn e.message
+    opts.show_usage
+  end
+
+end
+
+opts.parse!
+opts.show_usage unless pnr && accounts.length > 0
+
+begin
+  Nordea.new(pnr, options) do |n|
+    accounts.each do |account|
+      puts n.accounts[account].to_s
+    end
+  end
+rescue Nordea::InvalidLogin => e
+  puts "Invalid login: #{e.message}"
+end
