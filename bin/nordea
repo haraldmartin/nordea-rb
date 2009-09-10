@@ -58,7 +58,7 @@ opts.show_usage unless pnr && accounts.length > 0
 begin
   Nordea.new(pnr, options) do |n|
     accounts.each do |account|
-      puts n.accounts[account].to_s
+      puts n.accounts[/#{account}/i].to_s
     end
   end
 rescue Nordea::InvalidLogin => e

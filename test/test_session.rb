@@ -121,5 +121,9 @@ class TestSession < Test::Unit::TestCase
     should "access the account by name using #[]" do
       assert_equal @session.accounts[1], @session.accounts["Huvudkonto"]
     end
+
+    should "find the account's name by pattern when using #[] with a regexp" do
+      assert_equal @session.accounts[1], @session.accounts[/huvud/i]
+    end
   end
 end
