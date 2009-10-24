@@ -1,12 +1,12 @@
 module Nordea
   class Account < Resource
     def initialize(fields = {}, command_params = {}, session = nil)
-      @name, @balance, @currency = fields[:name], fields[:balance], fields[:currency]
+      @name, @balance, @currency, @index = fields[:name], fields[:balance], fields[:currency], fields[:index]
       @command_params = command_params
       @session = session
     end
     
-    attr_accessor :name, :balance, :currency, :session
+    attr_accessor :name, :balance, :currency, :index, :session
     
     def account_type_name; 'konton' end
 
@@ -42,10 +42,12 @@ module Nordea
     private
     
       def self._setup_fields(xml_node)
-        name = xml_node.at("postfield[@name='account_name']")['value']
+        name     = xml_node.at("postfield[@name='account_name']")['value']
         currency = xml_node.at("postfield[@name='account_currency_code']")['value']
+        index    = xml_node.at("postfield[@name='account_index']")['value']
         balance  = xml_node.next_sibling.next
-        { :name => name, :currency => currency, :balance => Support.dirty_currency_string_to_f(balance) }
+        { :name => name, :currency => currency, 
+          :balance => Support.dirty_currency_string_to_f(balance), :index => index }
       end
     
       def self._setup_command_params(xml_node)

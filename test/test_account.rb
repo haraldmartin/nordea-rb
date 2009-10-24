@@ -9,7 +9,7 @@ class TestAccount < Test::Unit::TestCase
     end
   
     context "each Account instance" do
-      should "return a description of the account for #to_s" do
+      should "have a description of the account for #to_s" do
         assert_equal 'savings account: 1234.50 EUR', @account.to_s
       end
     
@@ -97,6 +97,10 @@ class TestAccount < Test::Unit::TestCase
     
       should "have a balance" do
         assert_equal 2000.0, @account.balance
+      end
+      
+      should "have an index" do
+        assert_equal "1", @account.index
       end
     end
   end
