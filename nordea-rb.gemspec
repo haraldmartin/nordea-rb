@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{nordea-rb}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Str\303\266m"]
@@ -19,7 +19,8 @@ Gem::Specification.new do |s|
      "README.markdown"
   ]
   s.files = [
-    "LICENSE",
+    ".gitignore",
+     "LICENSE",
      "README.markdown",
      "Rakefile",
      "VERSION",
@@ -36,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/nordea/support.rb",
      "lib/nordea/transaction.rb",
      "lib/nordea/version.rb",
+     "nordea-rb.gemspec",
      "test/fixtures/account.wml",
      "test/fixtures/account_10_transactions.wml",
      "test/fixtures/account_15_transactions.wml",
