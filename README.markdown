@@ -80,6 +80,9 @@ Accessing your account details
       another_account = n.accounts['Savings']
       puts another_account.name # => "Savings"
       puts account.balance, account.currency, account.to_s
+      
+      # You can also access accounts using a regexp:
+      puts n.accounts[/saving/i]
     end
 
 Getting a list of transactions for an account
@@ -97,7 +100,20 @@ Getting a list of transactions for an account
       puts latest.withdrawal? # => true
       puts latest.deposit?    # => false
     end
-    
+
+Transfer money between your own accounts:
+
+    Nordea.new(...) do |n|
+      savings = n.accounts['Savings']
+      salary_account = n.accounts['Salary']
+      
+      # transfer 10 SEK from the savings account to the salary account
+      savings.withdraw(10.0, 'SEK', :deposit_to => salary_account)
+      
+      # basically the same transaction:
+      salary_account.deposit(10.0, 'SEK', :withdraw_from => savings)
+    end
+
 
 ## Command Line Tool
 
