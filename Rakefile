@@ -18,6 +18,7 @@ begin
     gemspec.email = "name@my-domain.se"
     gemspec.homepage = "http://github.com/haraldmartin/nordea-rb"
     gemspec.authors = ["Martin Ström"]
+    gemspec.add_dependency 'hpricot'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
