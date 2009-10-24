@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require File.join(File.dirname(__FILE__), *%w".. lib nordea")
 require 'optparse'
+require File.join(File.dirname(__FILE__), *%w".. lib nordea")
 
 options, accounts, pnr, command = {}, []
 

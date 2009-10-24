@@ -1,10 +1,11 @@
-require "rubygems"
+require 'rubygems'
 require 'open-uri'
 require 'net/https'
 begin
   require 'hpricot'
 rescue LoadError => e
   puts "Hpricot is missing. Run `sudo gem install hpricot` to install"
+  exit
 end
 
 $:.unshift File.dirname(__FILE__)
