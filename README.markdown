@@ -132,7 +132,6 @@ Show the balances for the accounts named "Savings" and "Salary". Login from keyc
 
 ## TODO
 
-- Support for transfering money between your own accounts
 - Clean up the API and class architecture
 - Add support for paging in transactions list
 - Build an iPhone optimized web app which uses nordea-rb as backend so we finally can have a better mobile bank
