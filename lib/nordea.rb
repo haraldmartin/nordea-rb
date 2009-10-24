@@ -40,30 +40,39 @@ module Nordea
   
   private
   
-    # TODO clean up
     def self.extract_login_details(pnr_or_hash, pin_or_options)
       if pnr_or_hash.is_a?(Hash)
-        pnr_or_hash.symbolize_keys!
-        pnr = pnr_or_hash[:pnr]
-        pin = pnr_or_hash[:pin]
+        pnr, pin = _login_details_from_hash(pnr_or_hash)
       elsif pnr_or_hash.is_a?(Symbol)
-        if pnr_or_hash == :keychain
-          options = { :label => 'Nordea' }.merge(pin_or_options.symbolize_keys)
-          pnr, pin = account_details_from_keychain(options)
-        end
+        pnr, pin = _login_details_from_symbol(pnr_or_hash, pin_or_options)
       elsif pnr_or_hash.is_a?(String) && pin_or_options.is_a?(String)
-        pnr = pnr_or_hash
-        pin = pin_or_options
+        pnr, pin = pnr_or_hash, pin_or_options
       else
         raise ArgumentError
       end
       [pnr.to_s.gsub(/\D+/, ''), pin.to_s.gsub(/\D+/, '')]
     end
-  
-    def Nordea.account_details_from_keychain(options)
+
+    def Nordea._login_details_from_hash(pnr_or_hash)
+      pnr_or_hash.symbolize_keys!
+      [pnr_or_hash[:pnr], pnr_or_hash[:pin]]
+    end
+    
+    def Nordea._login_details_from_symbol(symbol, options)
+      if symbol == :keychain
+        _account_details_from_keychain({ :label => 'Nordea' }.merge(options.symbolize_keys))
+      else
+        raise ArgumentError
+      end
+    end
+    
+    def Nordea._account_details_from_keychain(options)
       command = "security find-generic-password -l '#{options[:label]}' -g"
       command << " #{options[:keychain_file].inspect}" if options[:keychain_file]
       command << " 2>&1"
-      `#{command}`.scan(/password: "(\d{4})"|"acct"<blob>="(\d{10})"/).flatten.compact.reverse
+      output = `#{command}`
+      pnr = output.match(/"acct"<blob>="(\d{10})"/)[1]
+      pin = output.match(/password: "(\d{4})"/)[1]
+      [pnr, pin]
     end
 end
