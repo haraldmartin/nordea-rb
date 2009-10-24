@@ -30,8 +30,9 @@ module Nordea
     MAIN_MENU     = "WAPL10"
     TRANSACTIONS  = "KF11TW"
     TRANSFERS     = "WAP12TW"
-    TRANSFER_TO_OWN_ACCOUNT = "OF00TW"
-    TRANSFER_TO_OTHER_ACCOUNT = "EK00"
+    TRANSFER_TO_OWN_ACCOUNT_PHASE_1 = "OF00TW"
+    TRANSFER_TO_OWN_ACCOUNT_PHASE_2 = "OF10TW"
+    TRANSFER_TO_OWN_ACCOUNT_PHASE_3 = "OF12TW"
   end
   
   def Nordea.new(pnr_or_hash, pin_or_options = {}, &block)

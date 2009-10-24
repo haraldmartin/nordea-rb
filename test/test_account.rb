@@ -4,7 +4,7 @@ class TestAccount < Test::Unit::TestCase
   context Nordea::Account do
     setup do
       @session = Nordea::Session.new('foo', 'bar')
-      @account = Nordea::Account.new(:name => "savings account", :balance => 1234.50, :currency => 'EUR')
+      @account = Nordea::Account.new(:name => "savings account", :balance => 1234.50, :currency => 'EUR', :index => '2')
       @account.session = @session
     end
   
@@ -23,7 +23,68 @@ class TestAccount < Test::Unit::TestCase
         @account.transactions
       end
     end
-  
+    
+    context "transfers" do
+      setup do
+        @savings = @account
+        @checking = Nordea::Account.new(:name => "checking account", :balance => 100.0, :currency => 'EUR', :index => '1')
+        @checking.session = @session
+        @session.stubs(:request)
+        @session.stubs(:accounts)
+      end
+      
+      context "withdraw" do
+        should "query phase 1" do
+          @session.expects(:request).with(Nordea::Commands::TRANSFER_TO_OWN_ACCOUNT_PHASE_1, has_entries({
+            :from_account_info => "2:EUR:savings account",
+            :amount            => "6,5",
+            :currency_code     => "EUR",
+          }));
+        
+          @savings.withdraw(6.5, "EUR", :deposit_to => @checking)
+        end
+
+        should "query phase 2" do
+          @session.expects(:request).with(Nordea::Commands::TRANSFER_TO_OWN_ACCOUNT_PHASE_2, has_entries({
+            :from_account_info => "2:EUR:savings account",
+            :to_account_info   => "1:EUR:checking account",
+            :amount            => "6,5",
+            :currency_code     => "EUR",
+          }))
+        
+          @savings.withdraw(6.5, "EUR", :deposit_to => @checking)
+        end
+
+        should "query phase 3" do
+          @session.expects(:request).with(Nordea::Commands::TRANSFER_TO_OWN_ACCOUNT_PHASE_3, has_entries({
+            :currency_code             => "EUR",
+        		:from_account_number       => "2",
+        		:from_account_name         => "savings account",
+        		:to_account_number         => "1",
+        		:to_account_name           => "checking account",
+        		:amount                    => "6,5",
+        		:exchange_rate             => "0",
+        		:from_currency_code        => "EUR",
+        		:to_currency_code          => "EUR"
+          }))
+        
+          @savings.withdraw(6.5, "EUR", :deposit_to => @checking)
+        end
+        
+        should "reload the accounts" do
+          @session.expects(:accounts).with(true)
+          @savings.withdraw(6.5, "EUR", :deposit_to => @checking)
+        end
+      end
+      
+      context "deposit" do
+        should "should withdraw from the other account" do
+          @checking.expects(:withdraw).with(6.5, 'EUR', :deposit_to => @savings)
+          @savings.deposit(6.5, 'EUR', :withdraw_from => @checking)
+        end
+      end
+    end
+    
     context "the list of transactions" do
       setup do
         response = stub(:parse_xml => Hpricot.XML(fixture_content('account')))

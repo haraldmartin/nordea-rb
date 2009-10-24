@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+	
+
+
+
+
+<wml>
+
+<template>
+	<do type="options" label="Solo meny">
+		<go method="
+	post
+
+" href="https://gfs.nb.se/bin2/gfskod">
+			<postfield name="OBJECT" value="WAPL10"/>
+			<postfield name="sid" value="123456789"/>
+		</go>
+	</do>
+</template>
+
+<card title="Till eg. 4(4)" newcontext="true">
+	<onevent type="onenterforward">
+		<refresh>
+			<setvar name="sid" value="123456789"/>
+		</refresh>
+	</onevent>
+	
+	<p>
+		&#214;verf&#246;ringen &#228;r utf&#246;rd.<br/>
+		<br/>
+		
+		<a href="#info">Visa &#246;verf&#246;ringen</a>
+		
+
+	<br/>
+
+
+
+
+		
+		<anchor title="&#214;verf&#246;ring">Ny &#246;verf&#246;ring
+			<go method="
+	post
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="OF00TW"/>
+				<postfield name="sid" value="$sid"/>
+				<postfield name="no_prev" value="1"/>
+				
+			</go>
+		</anchor>
+		
+
+	<br/>
+
+
+
+
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	post
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="$sid"/>
+				<postfield name="no_prev" value="1"/>
+			</go>
+		</anchor>
+	</p>
+</card>
+
+<card id="info" title="&#214;verf. info">
+	  <p>
+		Fr&#229;n: Huvudkonto<br/>
+		Till:	Betalkonto<br/>
+		Belopp: 10,00 SEK<br/>
+		<br/>
+		
+		<anchor title="&#214;verf&#246;ring">Ny &#246;verf&#246;ring
+			<go method="
+	post
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="OF00TW"/>
+				<postfield name="sid" value="$sid"/>
+				<postfield name="no_prev" value="1"/>
+				
+			</go>
+		</anchor>
+		
+
+	<br/>
+
+
+
+
+		
+		<anchor title="Solo meny">Huvudmeny
+			<go method="
+	post
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="WAPL10"/>
+				<postfield name="sid" value="$sid"/>
+				<postfield name="no_prev" value="1"/>
+			</go>
+		</anchor> <br/>
+
+    <do type="prev" label="Tillbaka">
+	  	<prev/>
+	  </do>
+
+</p>
+</card>
+
+</wml>

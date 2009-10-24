@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml"> 
+
+	
+
+	
+
+
+
+
+<wml>
+
+<template>
+	<do type="options" label="Solo meny">
+		<go method="
+	post
+
+" href="https://gfs.nb.se/bin2/gfskod">
+			<postfield name="OBJECT" value="WAPL10"/>
+			<postfield name="sid" value="123456789"/>
+		</go>
+	</do>
+	
+</template>
+
+
+	<card title="Till eg. 2(4)" newcontext="true">
+
+<onevent type="onenterforward">
+	<refresh>
+		<setvar name="sid" value="123456789"/>
+		
+	</refresh>
+</onevent>
+
+<p>
+		
+	
+	
+		
+		
+		
+		
+			
+				
+			
+				
+			
+				
+			
+		
+		
+
+
+
+
+	
+
+
+
+
+	Till konto<br/><select name="to_account_info" ivalue="1" title="Till konto">
+
+
+			
+				<option value="1:SEK:Sparkonto">Sparkonto SEK</option>
+			
+				<option value="2:SEK:Huvudkonto">Huvudkonto SEK</option>
+			
+				<option value="3:SEK:Betalkonto">Betalkonto SEK</option>
+			
+		
+
+
+	</select><br/>
+
+
+		
+		<anchor title="&#214;verf&#246;r">OK - &#214;verf&#246;r
+			<go method="
+	post
+
+" href="https://gfs.nb.se/bin2/gfskod">
+				<postfield name="OBJECT" value="OF10TW"/>
+				<postfield name="sid" value="$sid"/>
+				<postfield name="from_account_info" value="1:SEK:Sparkonto"/>
+				<postfield name="to_account_info" value="$to_account_info"/>
+				<postfield name="amount" value="1"/>
+				<postfield name="currency_code" value="SEK"/>
+				<postfield name="account_org" value=""/>
+				<postfield name="account_curr_org" value=""/>
+			</go>
+		</anchor>
+		
+
+	<br/>
+
+
+
+
+		
+	
+		
+	<anchor title="Avbryt">Avbryt
+		<go method="
+	post
+
+" href="https://gfs.nb.se/bin2/gfskod">
+			<postfield name="OBJECT" value="WAP12TW"/>
+			<postfield name="sid" value="$sid"/>
+		</go>
+	</anchor>
+</p>
+</card>
+
+</wml>

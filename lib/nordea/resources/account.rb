@@ -39,6 +39,47 @@ module Nordea
       new _setup_fields(xml_node), _setup_command_params(xml_node), session
     end
     
+    def withdraw(amount, currency = 'SEK', options = {})
+      options.symbolize_keys!
+      to = options[:deposit_to]
+
+      raise ArgumentError, "options[:deposit_to] must be a Nordea::Account" unless to.is_a?(Nordea::Account)
+
+      currency, amount  = currency.to_s, amount.to_s.sub(".", ",")
+      from_account_info = [index, currency, name].join(":")
+      to_account_info   = [to.index, to.currency, to.name].join(":")
+
+      params = { :from_account_info => from_account_info,
+                 :to_account_info   => to_account_info,
+                 :amount            => amount,
+                 :currency_code     => currency }
+      
+      session.request(Nordea::Commands::TRANSFER_TO_OWN_ACCOUNT_PHASE_1, params)
+      session.request(Nordea::Commands::TRANSFER_TO_OWN_ACCOUNT_PHASE_2, params)
+      session.request(Nordea::Commands::TRANSFER_TO_OWN_ACCOUNT_PHASE_3, {
+        :currency_code             => currency,
+        :from_account_number       => index,
+        :from_account_name         => name,
+        :to_account_number         => to.index,
+        :to_account_name           => to.name,
+        :amount                    => amount,
+        :exchange_rate             => "0",
+        :from_currency_code        => currency,
+        :to_currency_code          => currency
+      })
+
+      session.accounts(true)
+    end
+
+    def deposit(amount, currency = 'SEK', options = {})
+      options.symbolize_keys!
+      from = options.delete(:withdraw_from)
+      
+      raise ArgumentError unless from.is_a?(Nordea::Account)
+      
+      from.withdraw(amount, currency, options.merge(:deposit_to => self))
+    end
+
     private
     
       def self._setup_fields(xml_node)
