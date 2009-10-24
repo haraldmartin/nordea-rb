@@ -8,14 +8,12 @@ rescue LoadError => e
   exit
 end
 
-$:.unshift File.dirname(__FILE__)
-
-require 'nordea/request'
-require 'nordea/resources'
-require 'nordea/session'
-require 'nordea/support'
-require 'nordea/transaction'
-require 'nordea/version'
+require "nordea/request"
+require "nordea/resources"
+require "nordea/session"
+require "nordea/support"
+require "nordea/transaction"
+require "nordea/version"
 
 module Nordea
   class InvalidLogin < StandardError; end

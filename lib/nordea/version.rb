@@ -6,4 +6,6 @@ module Nordea
 
     STRING = [MAJOR, MINOR, TINY].join(".")
   end
+
+  VERSION = Nordea::Version::STRING
 end

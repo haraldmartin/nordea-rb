@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), *%w".. lib nordea")
+require 'nordea'
 require 'shoulda'
 gem 'mocha', '=0.9.5'
 require 'mocha'
