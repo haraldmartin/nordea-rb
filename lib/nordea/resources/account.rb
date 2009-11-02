@@ -5,6 +5,7 @@ module Nordea
       @command_params = command_params
       @session = session
       @session = session if session
+      yield self if block_given?
     end
     
     attr_accessor :name, :balance, :currency, :index, :session
