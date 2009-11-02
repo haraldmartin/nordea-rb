@@ -4,6 +4,7 @@ module Nordea
       @name, @balance, @currency, @index = fields[:name], fields[:balance], fields[:currency], fields[:index]
       @command_params = command_params
       @session = session
+      @session = session if session
     end
     
     attr_accessor :name, :balance, :currency, :index, :session
