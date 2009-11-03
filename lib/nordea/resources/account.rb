@@ -20,6 +20,9 @@ module Nordea
     def transactions(reload = false)
       @transactions = nil if reload
       @transactions ||= begin
+        # for some reason it needs this otherwise it would use the old transaction list
+        session.request(Nordea::Commands::RESOURCE)
+
         doc = session.request(Commands::TRANSACTIONS, to_command_params).parse_xml
         doc.search('go[@href="#trans"]').inject([]) do |all, node|
           all << Transaction.new_from_xml(node)

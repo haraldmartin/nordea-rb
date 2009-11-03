@@ -6,6 +6,7 @@ class TestAccount < Test::Unit::TestCase
       @session = Nordea::Session.new('foo', 'bar')
       @account = Nordea::Account.new(:name => "savings account", :balance => 1234.50, :currency => 'EUR', :index => '2')
       @account.session = @session
+      @session.stubs(:request)
     end
   
     context "each Account instance" do
@@ -20,6 +21,7 @@ class TestAccount < Test::Unit::TestCase
       should "request the transactions from the server" do
         response = mock(:parse_xml => Hpricot.XML(fixture_content('account')))
         @session.expects(:request).with('KF11TW', {}).returns(response)
+        @session.expects(:request).with('KF00TW') # it needs this command to reset the transaction list
         @account.transactions
       end
     end
