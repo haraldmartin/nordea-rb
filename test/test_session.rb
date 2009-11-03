@@ -125,5 +125,34 @@ class TestSession < Test::Unit::TestCase
     should "find the account's name by pattern when using #[] with a regexp" do
       assert_equal @session.accounts[1], @session.accounts[/huvud/i]
     end
+
+    should "cache the account objects" do
+      @session.accounts
+      assert_no_requests_made(@session) do
+        @session.accounts
+        @session.accounts
+      end
+    end
+    
+    should "refetch the account objects when passing true as argument" do
+      @session.accounts
+      assert_requests_made(@session, 1) { @session.accounts(true) }
+    end
+    
+    should "not create new account objects when reloading" do
+      assert_equal @session.accounts, @session.accounts(true)
+    end
+    
+    should "setup the objects first time when passing reload flag" do
+      assert_requests_made(@session, 1) { @session.accounts(true) }
+      assert_equal 3, @session.accounts.length
+    end
+    
+    should "set new balance when reloading" do
+      @session.accounts # create the account objects
+      xml = Hpricot.XML(fixture_content('accounts').sub('179,05', '1234,56'))  
+      Nordea::Request.stubs(:new).returns(stub(:parse_xml => xml))
+      assert_equal 1234.56, @session.accounts(true)[/Betal/].balance
+    end
   end
 end

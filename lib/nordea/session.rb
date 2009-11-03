@@ -45,19 +45,30 @@ module Nordea
     end
     
     def accounts(reload = false)
-      @accounts = nil if reload
-      @accounts ||= setup_resources(Account)
+      if reload && @accounts
+        reloaded_xml_nodes = reload_resources(Account)
+        @accounts.each_with_index { |account, idx| account.reload_from_xml(reloaded_xml_nodes[idx]) }
+      else
+        @accounts ||= setup_resources(Account)
+      end
     end
     
     private
     
-      def setup_resources(klass)
+      def fetch_resources(klass)
         type = klass.new.account_type_name
         doc = request(Commands::RESOURCE, "account_type_name" => type).parse_xml
-        (doc/"go postfield[@name='OBJECT'][@value='#{Commands::TRANSACTIONS}']").
-          inject(ResourceCollection.new) do |all, field| 
-            all << klass.new_from_xml(field.parent.parent, self)
-          end
+        (doc/"go postfield[@name='OBJECT'][@value='#{Commands::TRANSACTIONS}']")
+      end
+
+      def reload_resources(klass)
+        fetch_resources(klass).map { |field| field.parent.parent }
+      end
+
+      def setup_resources(klass)
+        fetch_resources(klass).inject(ResourceCollection.new) do |all, field| 
+          all << klass.new_from_xml(field.parent.parent, self)
+        end
       end
   end
 end
