@@ -117,6 +117,10 @@ class TestAccount < Test::Unit::TestCase
       should "set transaction's text" do
         assert_equal "Res. köp", @transactions.first.text
       end
+
+      should "set transaction's account" do
+        assert_equal @account, @transactions.first.account
+      end
     end
   
     context "creating a new Account object from XML" do

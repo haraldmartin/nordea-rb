@@ -3,7 +3,6 @@ module Nordea
     def initialize(fields = {}, command_params = {}, session = nil)
       @name, @balance, @currency, @index = fields[:name], fields[:balance], fields[:currency], fields[:index]
       @command_params = command_params
-      @session = session
       @session = session if session
       yield self if block_given?
     end
@@ -25,7 +24,7 @@ module Nordea
 
         doc = session.request(Commands::TRANSACTIONS, to_command_params).parse_xml
         doc.search('go[@href="#trans"]').inject([]) do |all, node|
-          all << Transaction.new_from_xml(node)
+          all << Transaction.new_from_xml(node, self)
         end
       end
     end
