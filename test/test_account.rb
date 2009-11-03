@@ -24,6 +24,11 @@ class TestAccount < Test::Unit::TestCase
         @session.expects(:request).with('KF00TW') # it needs this command to reset the transaction list
         @account.transactions
       end
+      
+      should "reload the account object from session" do
+        @session.expects(:accounts).with(true)
+        @account.reload
+      end
     end
     
     context "transfers" do
@@ -74,7 +79,7 @@ class TestAccount < Test::Unit::TestCase
         end
         
         should "reload the accounts" do
-          @session.expects(:accounts).with(true)
+          @account.expects(:reload)
           @savings.withdraw(6.5, "EUR", :deposit_to => @checking)
         end
       end
@@ -168,6 +173,12 @@ class TestAccount < Test::Unit::TestCase
       
       should "have an index" do
         assert_equal "1", @account.index
+      end
+    
+      should "reload via xml" do
+        xml = @xml_node.sub('2.000,00', '1.234,00')
+        @account.reload_from_xml(xml)
+        assert_equal 1234.0, @account.balance
       end
     end
   end

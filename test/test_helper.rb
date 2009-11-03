@@ -62,4 +62,8 @@ class Test::Unit::TestCase
     after = session.num_requests
     assert_equal before + num_requests, after, msg
   end
+  
+  def assert_no_requests_made(session, msg = nil, &blk)
+    assert_requests_made(session, 0, msg, &blk)
+  end
 end

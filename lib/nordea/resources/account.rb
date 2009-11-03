@@ -37,10 +37,15 @@ module Nordea
       %Q{%.#{decimals}f} % balance
     end
 
-    def self.new_from_xml(xml_node, session)
+    def reload
+      @transactions = nil
+      session.accounts(true)
+    end
+
+    def reload_from_xml(xml_node)
       xml_node = Hpricot(xml_node) unless xml_node.class.to_s =~ /^Hpricot::/
       xml_node = xml_node.at("anchor") unless xml_node.name == 'anchor'
-      new _setup_fields(xml_node), _setup_command_params(xml_node), session
+      initialize(self.class._setup_fields(xml_node), self.class._setup_command_params(xml_node))
     end
     
     def withdraw(amount, currency = 'SEK', options = {})
@@ -72,7 +77,7 @@ module Nordea
         :to_currency_code          => currency
       })
 
-      session.accounts(true)
+      reload
     end
 
     def deposit(amount, currency = 'SEK', options = {})
@@ -84,8 +89,12 @@ module Nordea
       from.withdraw(amount, currency, options.merge(:deposit_to => self))
     end
 
+    def self.new_from_xml(xml_node, session)
+      new({}, {}, session) { |acc| acc.reload_from_xml(xml_node) }
+    end
+
     private
-    
+      
       def self._setup_fields(xml_node)
         name     = xml_node.at("postfield[@name='account_name']")['value']
         currency = xml_node.at("postfield[@name='account_currency_code']")['value']
