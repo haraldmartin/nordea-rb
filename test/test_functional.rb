@@ -39,7 +39,7 @@ class FunctionalTest < Test::Unit::TestCase
         assert_requests_made(n, 1, "reloading the accounts cache") { n.accounts(true) }
         
         # getting one of the account's transactions
-        assert_requests_made(n, 1) do
+        assert_requests_made(n, 2) do
           assert_equal 5, n.accounts.first.transactions.size # we use the same ficture so all accounts have 20 transactions
         end
         
@@ -48,12 +48,12 @@ class FunctionalTest < Test::Unit::TestCase
           assert_equal 5, n.accounts['Sparkonto'].transactions.size
         end
         
-        assert_requests_made(n, 1, "reload the cached transactions list") { 
+        assert_requests_made(n, 2, "reload the cached transactions list") { 
           n.accounts['Sparkonto'].transactions(true).size 
         }
         
         # ask for the other accounts's transactions
-        assert_requests_made(n, 2) do
+        assert_requests_made(n, 4) do
           assert_equal 10, n.accounts['Huvudkonto'].transactions.size
           assert_equal 20, n.accounts['Betalkonto'].transactions.size
         end
