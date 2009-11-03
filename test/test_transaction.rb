@@ -11,6 +11,7 @@ class TestTransaction < Test::Unit::TestCase
 			</go>
 		</anchor>
     END
+    @account = stub("Account", :name => 'fake account')
     @transaction = Nordea::Transaction.new_from_xml(@xml_node)
   end
   
@@ -54,5 +55,16 @@ class TestTransaction < Test::Unit::TestCase
     t = Nordea::Transaction.new('2009-01-01', 10.00, 'Salery')
     assert t.deposit?
     assert !t.withdrawal?
+  end
+  
+  should "allow to pass an account to the contstructor" do
+    t = Nordea::Transaction.new('2009-01-01', 10.00, 'Salery', @account)
+    assert_equal @account, t.account
+  end
+  
+  should "have a setter for the account property" do
+    t = Nordea::Transaction.new('2009-01-01', 10.00, 'Salery')
+    t.account = @account
+    assert_equal @account, t.account
   end
 end
