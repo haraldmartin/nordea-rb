@@ -18,13 +18,6 @@ class FunctionalTest < Test::Unit::TestCase
     end
     
     should "login and display the number of accounts" do
-      def assert_requests_made(session, num_requests = 1, msg = nil, &blk)
-        before = session.num_requests
-        yield
-        after = session.num_requests
-        assert_equal before + num_requests, after, msg
-      end
-      
       Nordea.new('1234567890', '0987') do |n|
         
         # logging in

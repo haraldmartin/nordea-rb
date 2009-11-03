@@ -55,4 +55,11 @@ class Test::Unit::TestCase
       end
     end
   end
+
+  def assert_requests_made(session, num_requests = 1, msg = nil, &blk)
+    before = session.num_requests
+    yield
+    after = session.num_requests
+    assert_equal before + num_requests, after, msg
+  end
 end
