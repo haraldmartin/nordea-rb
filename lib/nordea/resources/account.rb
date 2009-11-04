@@ -15,16 +15,21 @@ module Nordea
       @command_params
     end
     
-    # TODO move shared transaction fetching to Nordea::Resource and call super
     def transactions(reload = false)
       @transactions = nil if reload
       @transactions ||= begin
         # for some reason it needs this otherwise it would use the old transaction list
         session.request(Nordea::Commands::RESOURCE)
 
-        doc = session.request(Commands::TRANSACTIONS, to_command_params).parse_xml
-        doc.search('go[@href="#trans"]').inject([]) do |all, node|
-          all << Transaction.new_from_xml(node, self)
+        nodes = session.request(Commands::TRANSACTIONS, to_command_params).parse_xml.search('go[@href="#trans"]')
+        idx = nodes.length
+        
+        nodes.inject([]) do |all, node|
+          trans = Transaction.new_from_xml(node, self)
+          # since transactions don't have a time (just date) but are listed in chronological order
+          # we add one second to each item in the collection so they can be sorted by date
+          trans.date = Time.parse(trans.date.to_s) + (idx -= 1)
+          all << trans
         end
       end
     end

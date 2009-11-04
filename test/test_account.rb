@@ -112,7 +112,11 @@ class TestAccount < Test::Unit::TestCase
       end
   
       should "set transaction's date" do
-        assert_equal "2009-08-16", @transactions.first.date.to_s
+        assert_equal "2009-08-16", @transactions.first.date.strftime("%Y-%m-%d")
+      end
+      
+      should "set each transaction's time increased in the same order as listed" do
+        assert_equal (0...20).to_a.reverse, @transactions.map { |t| t.date.sec }
       end
 
       should "set transaction's amount" do
