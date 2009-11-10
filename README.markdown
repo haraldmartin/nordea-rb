@@ -114,6 +114,7 @@ Transfer money between your own accounts:
       salary_account.deposit(10.0, 'SEK', :withdraw_from => savings)
     end
 
+There are more, real world examples in the examples folder.
 
 ## Command Line Tool
 
