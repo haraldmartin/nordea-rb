@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# This script will take an amount as argument (or default to 3000 SEK)
+# and transfer that amount from the salary to the payments account.
+
 require 'rubygems'
 require 'nordea'
 
