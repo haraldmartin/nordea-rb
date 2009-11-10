@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'nordea'
+
+amount = (ARGV.first || 3000).to_f
+
+Nordea.new(:keychain) do |n|
+  main, payments = n.accounts[/Salary/], n.accounts[/payments/i]
+  puts "Current balance:", main, payments
+  puts
+  print "Transfer #{amount} SEK to payments account? (yes/no) "
+  
+  if STDIN.gets.chop =~ /^y/i
+    print "\nTransferring..."
+    main.withdraw(amount, 'SEK', :deposit_to => payments)
+    puts "Done"
+    puts
+    puts "Current balance:", main, payments
+  end
+end
