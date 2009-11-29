@@ -50,34 +50,47 @@ class TestNordea < Test::Unit::TestCase
       assert_raise(ArgumentError) { Nordea.new(:foo) }
     end
 
-    should "raise call the secutiry commando on OS X to retreive the password" do
-      #Nordea.expects(:`).returns(<<-EOF)
-      return_value = <<-EOF
-keychain: "/Users/me/Library/Keychains/login.keychain"
-class: "genp"
-attributes:
-    0x00000001 <blob>="Nordea"
-    0x00000002 <blob>=<NULL>
-    "acct"<blob>="1234567890"
-    "cdat"<timedate>=0x11111111111111111111111111111111  "111111111111111\000"
-    "crtr"<uint32>=<NULL>
-    "cusi"<sint32>=<NULL>
-    "desc"<blob>=<NULL>
-    "gena"<blob>=<NULL>
-    "icmt"<blob>=<NULL>
-    "invi"<sint32>=<NULL>
-    "mdat"<timedate>=0x22222222222222222222222222222222  "222222222222222\000"
-    "nega"<sint32>=<NULL>
-    "prot"<blob>=<NULL>
-    "scrp"<sint32>=<NULL>
-    "svce"<blob>="Nordea"
-    "type"<uint32>=<NULL>
-password: "1337"
-      EOF
+    context "getting the account details from the OS X Keychain" do
+      setup do
+        @return_value = <<-EOF
+  keychain: "/Users/me/Library/Keychains/login.keychain"
+  class: "genp"
+  attributes:
+      0x00000001 <blob>="Nordea"
+      0x00000002 <blob>=<NULL>
+      "acct"<blob>="1234567890"
+      "cdat"<timedate>=0x11111111111111111111111111111111  "111111111111111\000"
+      "crtr"<uint32>=<NULL>
+      "cusi"<sint32>=<NULL>
+      "desc"<blob>=<NULL>
+      "gena"<blob>=<NULL>
+      "icmt"<blob>=<NULL>
+      "invi"<sint32>=<NULL>
+      "mdat"<timedate>=0x22222222222222222222222222222222  "222222222222222\000"
+      "nega"<sint32>=<NULL>
+      "prot"<blob>=<NULL>
+      "scrp"<sint32>=<NULL>
+      "svce"<blob>="Nordea"
+      "type"<uint32>=<NULL>
+  password: "1337"
+        EOF
+        Nordea.stubs(:`).with(anything).returns(@return_value)
+      end
       
-      Nordea.expects(:`).with(anything).returns(return_value)
+      should "call the security commando on OS X to retreive the password" do
+        Nordea.expects(:`).with(anything).returns(@return_value)
+        Nordea.new(:keychain)
+      end
 
-      Nordea.new(:keychain)
+      should "find pnr with dashes" do
+        @return_value.gsub!('"acct"<blob>="1234567890"', '"acct"<blob>="123456-7890"')
+        assert_equal "1234567890", Nordea.new(:keychain).pnr
+      end
+
+      should "find pnr with spaces" do
+        @return_value.gsub!('"acct"<blob>="1234567890"', '"acct"<blob>=" 123456 7890"')
+        assert_equal "1234567890", Nordea.new(:keychain).pnr
+      end
     end
   end
 end

@@ -71,7 +71,7 @@ module Nordea
       command << " #{options[:keychain_file].inspect}" if options[:keychain_file]
       command << " 2>&1"
       output = `#{command}`
-      pnr = output.match(/"acct"<blob>="(\d{10})"/)[1]
+      pnr = output.match(/"acct"<blob>="([\d \-]+)"/)[1].gsub(/\D/, '')
       pin = output.match(/password: "(\d{4})"/)[1]
       [pnr, pin]
     end
