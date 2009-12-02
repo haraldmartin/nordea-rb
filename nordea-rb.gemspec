@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{nordea-rb}
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Str\303\266m"]
-  s.date = %q{2009-11-10}
+  s.date = %q{2009-11-29}
   s.default_executable = %q{nordea}
   s.description = %q{Ruby library for accessing your Nordea Bank account and transferring money between your own accounts.}
   s.email = %q{name@my-domain.se}
