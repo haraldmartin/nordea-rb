@@ -32,6 +32,10 @@ class TestTransaction < Test::Unit::TestCase
     assert_equal "Res. köp", @transaction.text
   end
   
+  should 'have a text with the "reserved" part stripped' do
+    assert_equal "Kortköp", @transaction.final_text
+  end
+  
   # should "allow to create a Transaction using a hash for params" do
   #   transaction = Nordea::Transaction.new(:date => '2009-10-11', :text => "foo", :amount => -13.37)
   #   assert_equal '2009-10-11', transaction.date.to_s

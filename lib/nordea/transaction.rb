@@ -8,6 +8,10 @@ module Nordea
     
     attr_accessor :date, :amount, :text, :account
     
+    def final_text
+      text.sub("Res. köp", "Kortköp")
+    end
+    
     def withdrawal?
       amount < 0
     end
