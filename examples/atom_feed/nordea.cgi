@@ -50,10 +50,9 @@ protected
 
         feed.entry do |entry|
           entry.id      "tag:nordea,#{SCHEMA_DATE}:#{@pnr}/#{item.account.index};" + 
-                        "#{item_time.strftime('%Y-%m-%d')};#{item.text.gsub(/\W/, '')};" + 
+                        "#{item_time.strftime('%Y-%m-%d')};#{item.final_text.gsub(/\W/, '')};" + 
           amount = %Q{%.2f SEK} % item.amount
           entry.title   "#{item.text} #{amount}"
-                        "#{item.amount};#{}".gsub(/\s+/, '')
           entry.content %{<table>
                             <tr><th>Konto:</th>  <td>#{item.account.name}</td></tr>
                             <tr><th>Datum:</th>  <td>#{item_date}</td></tr>
